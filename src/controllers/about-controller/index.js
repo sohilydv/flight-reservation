@@ -4,4 +4,4 @@ const about_controller = function (req, res) {
     return res.json({msg: 'ok', success: true, error: '', data : []});
 }
 
-module.exports = about_controller ;
+module.exports = about_controller;

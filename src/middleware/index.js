@@ -1,0 +1,1 @@
+module.exports = {validateRequest : require('./validate-request')}
