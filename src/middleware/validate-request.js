@@ -4,21 +4,16 @@ const {
   getReasonPhrase,
 } = require("http-status-codes");
 
-const validateRequest = async function validateRequest(req, res) {
+const { ErrorResponse } = require("../utils/common");
+const AppError = require("../utils/errors/app-error");
+
+const validateRequest = async function validateRequest(req, res, next) {
   if (req.body.modelNumber == null) {
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      msg: "invalid request modelNumber is not sent",
-      success: false,
-      error: getReasonPhrase(StatusCodes.BAD_REQUEST),
-      data: [],
-    });
+    ErrorResponse.error = new AppError('invalid request, modelNumber is not present', StatusCodes.BAD_REQUEST)
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }else if(req.body.modelNumber == ""){
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      msg: "modelNumber can't be empty",
-      success: false,
-      error: getReasonPhrase(StatusCodes.BAD_REQUEST),
-      data: [],
-    });
+    ErrorResponse.error = new AppError("modelNumber can't be empty", StatusCodes.BAD_REQUEST)
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
   next()
 }
