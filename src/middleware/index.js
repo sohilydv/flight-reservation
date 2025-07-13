@@ -1,1 +1,3 @@
-module.exports = {validateRequest : require('./validate-request')}
+module.exports = {
+  validateAirplaneRequest: require("./validate-airplane-request"),
+};

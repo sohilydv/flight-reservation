@@ -42,14 +42,16 @@ class CrudRepository {
     return result;
   }
 
-  async update(data, id) {
+  async update(id, data) {
     try {
-      const result = await this.model.update(data, {
-        where: {
-          id: id,
-        },
-      });
-      return result;
+      const instance = await this.get(id);
+      if (!instance) {
+        throw new AppError("Couldn't find the resource", StatusCodes.NOT_FOUND);
+      }
+      instance.set(data); // Only valid model fields will be set
+      const updated = await instance.save(); // Save to DB
+
+      return updated;
     } catch (error) {
       throw error;
     }
