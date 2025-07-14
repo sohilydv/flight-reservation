@@ -12,6 +12,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       code: {
         type: Sequelize.STRING,
@@ -21,10 +22,12 @@ module.exports = {
       address: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       cityId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        unique: true,
       },
       createdAt: {
         allowNull: false,
