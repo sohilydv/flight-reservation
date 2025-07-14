@@ -1,1 +1,4 @@
-module.exports = {AirplaneRepository : require('./airplane-repository.js')};
+module.exports = {
+  AirplaneRepository: require("./airplane-repository.js"),
+  CityRepository: require("./city-repository.js"),
+};

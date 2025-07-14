@@ -1,4 +1,4 @@
-const { Airplane } = require("../models"); // ✅ Import from centralized model init
+const Airplane  = require("../models").Airplane; // ✅ Import from centralized model init
 const AirplaneRepository = require("../repository/airplane-repository");
 const { StatusCodes } = require("http-status-codes");
 const airplaneRepository = new AirplaneRepository(Airplane);
