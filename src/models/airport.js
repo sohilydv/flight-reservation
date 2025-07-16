@@ -8,11 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-        this.belongsTo(models.City, {
-          foreignKey : 'cityId',
-          onDelete: 'CASCAD', // TODO
-          onUpdate: 'CASCAD' // TODO
-        })
+      this.belongsTo(models.City, {
+        foreignKey: "cityId",
+        sourceKey: "id",
+        as: "city",
+        onDelete: "CASCAD", // TODO
+        onUpdate: "CASCAD", // TODO
+      });
+      this.hasMany(models.Flight, {
+        foreignKey: "departureAirportId",
+        sourceKey: "code"
+      });
+      this.hasMany(models.Flight, {
+        foreignKey: "arrivalAirportId",
+        sourceKey: "code"
+      });
     }
   }
   Airport.init(
@@ -33,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       cityId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
+      }, // to to hit request with new id which doesn't exist in table yet
     },
     {
       sequelize,

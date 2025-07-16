@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models.Airport, {
-        foreignKey : "cityId"
+        foreignKey : "cityId",
+        sourceKey: "id"
       })
     }
   }
