@@ -7,4 +7,9 @@ router.get("/:id", flight_controller.getFlight);
 router.get("/", flight_controller.getAllFlight);
 router.delete("/:id", flight_controller.deleteFlight);
 router.patch("/:id", flightMiddleware.validateUpdateFlightRequest, flight_controller.updateFlight)
+router.patch(
+        '/:id/seats', 
+        flightMiddleware.validateUpdateSeatsRequest,
+        flight_controller.updateSeats
+);
 module.exports = router;
